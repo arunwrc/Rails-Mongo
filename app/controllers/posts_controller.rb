@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     #@posts = Post.all
     @posts = Post.paginate(:page => params[:page], :per_page =>3)
     #@posts = Post.paginate(:per_page=>3, :page=>params[:page], :sort => [created_at Desc])
-    #@posts = Post.paginate(:per_page => 3, :page => params[:page])
+    
   end
 
 
