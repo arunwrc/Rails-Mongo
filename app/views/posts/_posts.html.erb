@@ -1,0 +1,46 @@
+<div class="widget-content nopadding">
+ <table class="table table-bordered data-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Remarks</th>
+	  <th colspan="4">Action</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.name %></td>
+        <td><%= post.email %></td>
+        <td><%= post.phone %></td>
+        <td><%= post.address %></td>
+        <td><%= post.remarks %></td>
+        <td><%= link_to 'Show', post, :class => 'btn btn-primary btn-xs' %></td>
+        <td><%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_post_path(post), :class => 'btn btn-warning btn-xs' %></td>
+        <td><%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      post_path(post),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+		</td>
+		
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
+<br>
+<div class='digg_pagination'>
+	<div class="page_info">
+	      <%= page_entries_info @posts %>
+	</div>
+	  
+<%= will_paginate @posts %>
+</div><br>

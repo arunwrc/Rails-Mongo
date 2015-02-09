@@ -1,0 +1,114 @@
+<% model_class=Post%>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".scroll-area").scrollspy({target: "#myNavbar"}) 
+});
+</script>
+<style type="text/css">
+.scroll-area {
+	height: 380px;
+	position: relative;
+	overflow: auto;
+}
+</style>
+
+<div class="row-fluid">
+	<div class="span6">
+		<div class="widget-box">
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-barcode"></i>
+				</span>
+				<h5>Latest Version</h5>
+				<span class="pull-right">
+				
+					<%= link_to 'Edit',edit_post_path(@post),class:"btn btn-xs btn-warning",style:"vertical-align: text-top;
+margin-right: 2px" %>
+				
+				</span>
+			</div>
+			<div class="widget-content">
+				<p>
+				  <strong>Id:</strong>
+				 <%= @post.id %>
+			    </p>
+				<p>
+				  <strong>Last Updated:</strong>
+				 <%= @post.updated_at %>
+			    </p>
+				<p>
+				  <strong>Name:</strong>
+				  <%= @post.name %>
+				</p>
+
+				<p>
+				  <strong>Email:</strong>
+				  <%= @post.email %>
+				</p>
+
+				<p>
+				  <strong>Phone:</strong>
+				  <%= @post.phone %>
+				</p>
+
+				<p>
+				  <strong>Address:</strong>
+				  <%= @post.address %>
+				</p>
+
+				<p>
+				  <strong>Remarks:</strong>
+				  <%= @post.remarks %>
+				</p>
+				
+			</div>
+	 	</div>
+	</div>
+	
+	<div class="span6">
+		<div class="widget-box">
+			<div class="widget-title">
+				<span class="icon">
+					<i class="icon-book"></i>
+				</span>
+				<h5>Previous Versions</h5>
+			</div>
+			
+			<div class="widget-content">
+				<div class="scroll-area" data-spy="scroll">
+				<% @post.versions.reverse.each do |version| %>
+				
+                  <div class="widget-content nopadding">
+                    <ul class="recent-posts">
+                      <li>
+                        <div> 
+							
+						
+                        <div class="article-post"> 
+							
+						<span class="badge badge-inverse">Version  #<%= version.version %></span>
+						 
+						 <div><%= model_class.human_attribute_name(:updated_at) %>: <%= version.updated_at %> </p></div>
+						 
+                          <div><%= model_class.human_attribute_name(:name) %>: <%= version.name %> </p></div>
+						  <div><%= model_class.human_attribute_name(:email) %>: <%= version.email %> </p></div>
+						  <div><%= model_class.human_attribute_name(:phone) %>: <%= version.phone %> </p></div>
+						  <div><%= model_class.human_attribute_name(:remarks) %>: <%= version.remarks %> </p></div>
+						 
+                          </div>
+                      </li>
+
+                    </ul> 
+                  </div>
+				<% end %>
+			</div>
+	 	</div>
+	</div>
+	</div>
+	
+</div>	
+
+<div class='widget-content'>
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
+</div>
