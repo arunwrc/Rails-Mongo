@@ -10,7 +10,9 @@ class Post
   field :address, type: String
   field :remarks, type: String
   
+  field :user_email
   
+ 
 
  
 

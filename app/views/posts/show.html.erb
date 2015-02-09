@@ -19,7 +19,18 @@ $(document).ready(function(){
 				<span class="icon">
 					<i class="icon-barcode"></i>
 				</span>
-				<h5>Latest Version</h5>
+				<% sum = 0 %>
+				<% @post.versions.reverse.each do |version, i| %>
+				
+				    
+				        <% count = 1 %>
+				        <% sum += count %>
+				        <!-- <%= sum %> -->
+				    <% end;  %>
+				
+
+				
+				<h5>Latest version by <%= @post.user_email %></h5>
 				<span class="pull-right">
 				
 					<%= link_to 'Edit',edit_post_path(@post),class:"btn btn-xs btn-warning",style:"vertical-align: text-top;
@@ -28,6 +39,10 @@ margin-right: 2px" %>
 				</span>
 			</div>
 			<div class="widget-content">
+				<p>
+					<span class="badge badge-important">Version # <%= sum+1 %> updated by <%= @post.user_email %></span></h5>
+				</p>
+				
 				<p>
 				  <strong>Id:</strong>
 				 <%= @post.id %>
@@ -61,6 +76,8 @@ margin-right: 2px" %>
 				  <%= @post.remarks %>
 				</p>
 				
+
+				
 			</div>
 	 	</div>
 	</div>
@@ -76,6 +93,10 @@ margin-right: 2px" %>
 			
 			<div class="widget-content">
 				<div class="scroll-area" data-spy="scroll">
+					
+					
+
+					
 				<% @post.versions.reverse.each do |version| %>
 				
                   <div class="widget-content nopadding">
@@ -86,7 +107,7 @@ margin-right: 2px" %>
 						
                         <div class="article-post"> 
 							
-						<span class="badge badge-inverse">Version  #<%= version.version %></span>
+						<span class="badge badge-inverse">Version  # <%= version.version %> updated by <%= version.user_email %></span>
 						 
 						 <div><%= model_class.human_attribute_name(:updated_at) %>: <%= version.updated_at %> </p></div>
 						 
@@ -94,8 +115,7 @@ margin-right: 2px" %>
 						  <div><%= model_class.human_attribute_name(:email) %>: <%= version.email %> </p></div>
 						  <div><%= model_class.human_attribute_name(:phone) %>: <%= version.phone %> </p></div>
 						  <div><%= model_class.human_attribute_name(:remarks) %>: <%= version.remarks %> </p></div>
-						 
-                          </div>
+					</div>
                       </li>
 
                     </ul> 

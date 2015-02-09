@@ -30,15 +30,16 @@
       color: #000033;
       border-color: #000033; }
   .digg_pagination .page_info {
-    background: #2e6ab1;
-    color: white;
+    /*background: #2e6ab1;*/
+    color: #2e6ab1;
     padding: 0.4em 0.6em;
     width: 22em;
     margin-bottom: 0.3em;
-    text-align: center; }
+    text-align: center;
+	border: 1px solid #2E6AB1; }
     .digg_pagination .page_info b {
       color: #000033;
-      background: #6aa6ed;
+      /*background: #6aa6ed;*/
       padding: 0.1em 0.25em; }
   .digg_pagination:after {
     content: ".";

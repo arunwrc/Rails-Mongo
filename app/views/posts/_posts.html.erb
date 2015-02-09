@@ -1,22 +1,23 @@
+
 <div class="widget-content nopadding">
  <table class="table table-bordered data-table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
+	  <th>Email</th>
       <th>Phone</th>
       <th>Address</th>
       <th>Remarks</th>
 	  <th colspan="4">Action</th>
-
+	  
     </tr>
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+    <% @posts.reverse.each do |post| %>
       <tr>
-        <td><%= post.name %></td>
-        <td><%= post.email %></td>
+        <td><%= post.name %> <span class="badge badge-warning pull-right"><%= post.version %></span></td>
+		<td><%= post.email %></td>
         <td><%= post.phone %></td>
         <td><%= post.address %></td>
         <td><%= post.remarks %></td>
