@@ -1,3 +1,67 @@
+<script type="text/javascript" src="http://www.queness.com/resources/html/toggle/js/jquery.js"></script>
+
+
+<style type="text/css">
+
+#toggle-view {
+	list-style:none;	
+	font-family:arial;
+	font-size:11px;
+	margin:0;
+	padding:0;
+	width:400px;
+}
+
+	#toggle-view li {
+		margin:10px;
+		padding-top:7px;
+		padding-bottom:10px;
+		border-bottom:1px solid #ccc;
+		position:relative;
+		cursor:pointer;
+	}
+	
+	#toggle-view h3 {
+		margin:0;
+		font-size:14px;
+	}
+
+	#toggle-view span {
+		position:absolute;
+		right:5px; top:0;
+		color:#ccc;
+		font-size:13px;
+	}
+	
+	#toggle-view .panel {
+		margin:5px 0;
+		display:none;
+	}	
+
+</style>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+	
+	$('#toggle-view li').click(function () {
+
+		var text = $(this).children('div.panel');
+
+		if (text.is(':hidden')) {
+			text.slideDown('200');
+			$(this).children('span').html('-');		
+		} else {
+			text.slideUp('200');
+			$(this).children('span').html('+');		
+		}
+		
+	});
+
+});
+
+</script>
+
 <% model_class=Post%>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -41,7 +105,7 @@ margin-right: 2px" %>
 			</div>
 			<div class="widget-content">
 				<p>
-					<span class="badge badge-important">Version # <%= sum+1 %> updated by <%= @post.user_email %></span></h5>
+					<span class="badge badge-important">Version # <%= sum %> updated by <%= @post.user_email %></span></h5>
 				</p>
 				
 				<p>
@@ -99,36 +163,24 @@ margin-right: 2px" %>
 
 					
 				<% @post.versions.reverse.each do |version| %>
-				
-                  <div class="widget-content nopadding">
-                    <ul class="recent-posts">
-                      <li>
-                        <div> 
+				<!-- -->
+				<ul id="toggle-view">
+					<li>
+						<div class="badge badge-important">Version # <%= version.version %></div>  <div class="badge badge-lite">ID <%= version.id %></div>  <div class="badge badge-lite"> <%= link_to 'Revoke', edit_post_path(version.id) %></div>
+						<span>+</span>
+						<div class="panel">
+							<% version.altered_attributes.to_a.each do |object| %>
 							
-						
-                        <div class="article-post"> 
+								<div class="badge badge_width badge-success"><%= object.first %></div> 
+								<div class="badge badge-success"><%= object.second.second %></div><br>
 							
-						
-						 <div><span class="badge badge-important">Version # <%= version.version %>  </span>
-							<span class="badge badge-lite"> <%= link_to 'Revoke', edit_post_path(version.id) %></span> <br> <br>
-							  <span class="badge badge-success"><div>ID <%= version.id %></div></span><br>
-							 <% version.altered_attributes.to_a.each do |object| %>
-							<%  if object.first != '_id'  %>
-							
-						  <div>
-							  <span class="badge badge_width badge-success"><%= object.first %></span> 
-							   <span class="badge badge-success"><%= object.second.second %></span>
-							    
-						  </div>
-						  
-						 
-						  <% end %>
-						 <% end %>
-					 </div>
-                      </li>
+							<% end %>
+						</div>
+					</li>
 
-                    </ul> 
-                  </div>
+				</ul>
+				<!-- -->
+                  
 				<% end %>
 			</div>
 	 	</div>
