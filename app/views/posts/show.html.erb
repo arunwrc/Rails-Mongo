@@ -26,6 +26,7 @@ $(document).ready(function(){
 				        <% count = 1 %>
 				        <% sum += count %>
 				        <!-- <%= sum %> -->
+						
 				    <% end;  %>
 				
 
@@ -108,14 +109,16 @@ margin-right: 2px" %>
                         <div class="article-post"> 
 							
 						
-						 <div><span class="badge badge-important">Version # <%= version.version %></span> <br> 
-							  <div>ID <%= version.id %></div><br>
+						 <div><span class="badge badge-important">Version # <%= version.version %>  </span>
+							<span class="badge badge-lite"> <%= link_to 'Revoke', edit_post_path(version.id) %></span> <br> <br>
+							  <span class="badge badge-success"><div>ID <%= version.id %></div></span><br>
 							 <% version.altered_attributes.to_a.each do |object| %>
-							<%  if object.first != '_id' %>
+							<%  if object.first != '_id'  %>
 							
 						  <div>
 							  <span class="badge badge_width badge-success"><%= object.first %></span> 
-							   <span class="badge badge-warning"><%= object.second.second %></span>
+							   <span class="badge badge-success"><%= object.second.second %></span>
+							    
 						  </div>
 						  
 						 
