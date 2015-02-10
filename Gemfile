@@ -26,6 +26,9 @@ gem 'devise'
 #For Mongodb Versioning
 gem 'mongoid-versioning', github: 'pramodgmenon/mongoid-versioning', branch: 'with_id'
 
+#For Advanced Mongoid Versioning
+gem 'mongoid_delorean'
+
 #For simple_form
 gem 'simple_form'
 

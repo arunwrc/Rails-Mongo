@@ -107,15 +107,21 @@ margin-right: 2px" %>
 						
                         <div class="article-post"> 
 							
-						<span class="badge badge-inverse">Version  # <%= version.version %> updated by <%= version.user_email %></span>
+						
+						 <div><span class="badge badge-important">Version # <%= version.version %></span> <br> 
+							  <div>ID <%= version.id %></div><br>
+							 <% version.altered_attributes.to_a.each do |object| %>
+							<%  if object.first != '_id' %>
+							
+						  <div>
+							  <span class="badge badge_width badge-success"><%= object.first %></span> 
+							   <span class="badge badge-warning"><%= object.second.second %></span>
+						  </div>
+						  
 						 
-						 <div><%= model_class.human_attribute_name(:updated_at) %>: <%= version.updated_at %> </p></div>
-						 
-                          <div><%= model_class.human_attribute_name(:name) %>: <%= version.name %> </p></div>
-						  <div><%= model_class.human_attribute_name(:email) %>: <%= version.email %> </p></div>
-						  <div><%= model_class.human_attribute_name(:phone) %>: <%= version.phone %> </p></div>
-						  <div><%= model_class.human_attribute_name(:remarks) %>: <%= version.remarks %> </p></div>
-					</div>
+						  <% end %>
+						 <% end %>
+					 </div>
                       </li>
 
                     </ul> 

@@ -1,7 +1,8 @@
 class Post
-  
+
   include Mongoid::Document
-  include Mongoid::Versioning
+  include Mongoid::Delorean::Trackable
+  #include Mongoid::Versioning
   include Mongoid::Timestamps::Updated
   include Mongoid::Timestamps::Created
   field :name, type: String

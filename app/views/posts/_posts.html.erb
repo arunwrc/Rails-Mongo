@@ -3,6 +3,7 @@
  <table class="table table-bordered data-table">
   <thead>
     <tr>
+	  <th>Sl</th>
       <th>Name</th>
 	  <th>Email</th>
       <th>Phone</th>
@@ -14,8 +15,14 @@
   </thead>
 
   <tbody>
+	  <% sum = 0 %>
     <% @posts.reverse.each do |post| %>
+        <% count = 1 %>
+        <% sum += count %>
+        <!-- <%= sum %> -->
+  
       <tr>
+		<td><%= sum %></td>  
         <td><%= post.name %> <span class="badge badge-warning pull-right"><%= post.version %></span></td>
 		<td><%= post.email %></td>
         <td><%= post.phone %></td>
